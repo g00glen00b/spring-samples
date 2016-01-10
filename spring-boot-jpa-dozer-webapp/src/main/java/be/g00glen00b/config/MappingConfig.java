@@ -19,6 +19,7 @@ public class MappingConfig {
             protected void configure() {
                 mapping(Superhero.class, SuperheroDTO.class)
                     .fields("good", "alignment", customConverter(BooleanSuperheroAlignmentConverter.class))
+                    .fields(field("id").accessible(), field("id").accessible())
                     .fields("firstName", "identity.firstName")
                     .fields("lastName", "identity.lastName");
             }
