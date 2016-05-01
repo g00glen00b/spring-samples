@@ -2,3 +2,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  messages:
+    basename: messages/messages
+    encoding: UTF-8

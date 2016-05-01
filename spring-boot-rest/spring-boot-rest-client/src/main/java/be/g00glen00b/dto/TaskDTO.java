@@ -5,8 +5,6 @@ import javax.validation.constraints.Size;
 
 public class TaskDTO {
     private Long id;
-    @NotNull(message = "NotNull.taskDTO.description")
-    @Size(min = 1, max = 64, message = "Size.taskDTO.description")
     private String description;
     private boolean completed;
 

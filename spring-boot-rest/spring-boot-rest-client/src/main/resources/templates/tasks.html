@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+  <title>Task application</title>
+</head>
+<body>
+  <div class="container">
+    <h1>My tasks</h1>
+    <div class="row" th:each="task : ${tasks}">
+      <div class="nine columns">
+        <form th:method="put" th:action="@{/}">
+          <input type="hidden" name="id" th:value="${task.id}" />
+          <input type="hidden" name="description" th:value="${task.description}" />
+          <input type="checkbox" name="completed" th:checked="${task.completed}" onchange="form.submit()" />
+          <span th:text="${task.description}"></span>
+        </form>
+      </div>
+      <div class="three columns">
+        <form th:method="delete" th:action="@{/}">
+          <input type="hidden" name="id" th:value="${task.id}" />
+          <button class="button u-full-width" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <form method="post" th:action="@{/}" th:object="${newTask}">
+      <div class="row">
+        <div class="nine columns">
+          <input type="text" placeholder="Description of the task" class="u-full-width" th:field="*{description}" />
+          <span th:if="${error != null}" th:text="${error}"></span>
+        </div>
+        <div class="three columns">
+          <button type="submit" class="button-primary u-full-width">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
