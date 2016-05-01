@@ -1,31 +1,22 @@
-package be.g00glen00b.entity;
+package be.g00glen00b.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "task")
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class TaskDTO {
     private Long id;
-    @Column(name = "description")
+    @NotNull
+    @Size(min = 1, max = 64)
     private String description;
-    @Column(name = "completed")
     private boolean completed;
 
-    public Task(Long id, String description, boolean completed) {
+    public TaskDTO() {
+    }
+
+    public TaskDTO(Long id, String description, boolean completed) {
         this.id = id;
         this.description = description;
         this.completed = completed;
-    }
-
-    public Task() {
     }
 
     public Long getId() {
