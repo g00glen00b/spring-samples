@@ -54,10 +54,8 @@ public class TaskController {
     @ExceptionHandler(HttpClientErrorException.class)
     public String handleClientError(HttpClientErrorException ex, Model model) throws IOException {
         MessageDTO dto = mapper.readValue(ex.getResponseBodyAsByteArray(), MessageDTO.class);
-        model.addAttribute("tasks", service.findAll());
-        model.addAttribute("newTask", new TaskDTO());
         model.addAttribute("error", dto.getMessage());
-        return "tasks";
+        return findAll(model);
     }
 
 }
