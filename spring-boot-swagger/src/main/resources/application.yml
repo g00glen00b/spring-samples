@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
