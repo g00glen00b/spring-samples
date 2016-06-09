@@ -1,0 +1,135 @@
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version: v1
+  title: Simple task API
+  description: API for managing user tasks
+
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+host: localhost
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/json
+produces:
+  - application/json
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /api/tasks:
+    get:
+      description: Retrieving the collection of user tasks
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Task'
+    post:
+      description: Creating a new user task
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/task'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Task'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Message'
+  /api/tasks/{id}:
+    put:
+      description: Updating an existing user task
+      parameters:
+        - $ref: '#/parameters/id'
+        - $ref: '#/parameters/task'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Task'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/Message'
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/Message'
+    delete:
+      description: Deleting an existing user task
+      parameters:
+        - $ref: '#/parameters/id'
+      produces:
+        - application/json
+      responses:
+        "204":
+          description: Success
+        "404":
+          description: Task not found
+          schema:
+            $ref: '#/definitions/Message'
+
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  id:
+    name: id
+    in: path
+    description: ID of the task you want to update or delete
+    type: integer
+    format: int64
+    required: true
+  task:
+    name: task
+    in: body
+    description: Representation of the task you want to create or update
+    required: true
+    schema:
+      $ref: '#/definitions/Task'
+
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+definitions:
+  Task:
+    description: A user task
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: The unique identifier of the given task
+      description:
+        description: Description of the task
+        type: string
+      completed:
+        type: boolean
+        description: Indication if the task was completed or not
+  Message:
+    description: A message containing more info why the operation failed
+    properties:
+      message:
+        type: string
+        description: The message itself
