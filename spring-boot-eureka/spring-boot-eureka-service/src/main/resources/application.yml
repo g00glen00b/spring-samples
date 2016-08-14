@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: task-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?useSSL=false
+    username: dbuser
+    password: dbp4ss
+    platform: mysql
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    status-page-url-path: /info
+    health-check-url-path: /health
