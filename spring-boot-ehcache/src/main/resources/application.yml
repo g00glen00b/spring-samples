@@ -1,0 +1,4 @@
+spring:
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
