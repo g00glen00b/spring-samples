@@ -19,4 +19,9 @@ public class TaskController {
     public List<TaskDTO> findAll(@RequestParam(required = false) boolean noCache) {
         return service.findAll(noCache);
     }
+
+    @RequestMapping(value = "/cache", method = RequestMethod.DELETE)
+    public void clearCache() {
+        service.clearCache();
+    }
 }
