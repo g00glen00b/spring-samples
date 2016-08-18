@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Mapper(uses = { SuperheroAlignmentMapper.class }, componentModel = "spring")
-@Component
 public interface SuperheroMapper {
 
     @Mappings({

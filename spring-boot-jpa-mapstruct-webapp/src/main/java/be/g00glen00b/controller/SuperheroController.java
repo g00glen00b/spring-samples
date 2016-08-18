@@ -1,6 +1,5 @@
 package be.g00glen00b.controller;
 
-import be.g00glen00b.repository.SuperheroRepository;
 import be.g00glen00b.service.SuperheroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
