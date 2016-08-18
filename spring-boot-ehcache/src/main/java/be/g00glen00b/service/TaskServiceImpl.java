@@ -21,8 +21,8 @@ public class TaskServiceImpl {
         return Arrays.asList(new TaskDTO(1L, "My first task", true), new TaskDTO(2L, "My second task", false));
     }
 
-    @CacheEvict("tasks")
+    @CacheEvict(value = "tasks", allEntries = true)
     public void clearCache() {
-        // Empty method, @CacheEvict annotation does everything
+        logger.info("Cache cleared");
     }
 }
