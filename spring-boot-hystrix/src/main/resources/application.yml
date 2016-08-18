@@ -1,0 +1,18 @@
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+  instance:
+    status-page-url-path: /info
+    health-check-url-path: /health
+spring:
+  application:
+    name: task-app
+  cache:
+    ehcache:
+      config: classpath:ehcache.xml
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
