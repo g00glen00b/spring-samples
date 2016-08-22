@@ -2,6 +2,7 @@ package be.g00glen00b.service;
 
 import be.g00glen00b.dto.TaskDTO;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,17 @@ public class TaskServiceImpl {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @CachePut("tasks")
-    @HystrixCommand(fallbackMethod = "findAllCached")
+    @HystrixCommand(fallbackMethod = "findAllFallback", commandProperties = {
+        @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "20000"),
+        @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"),
+        @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10")
+    })
     public TaskDTO[] findAll() {
+        logger.info("Calling microservice");
         return restTemplate.getForObject("http://task-service/api/tasks", TaskDTO[].class);
     }
 
-    public TaskDTO[] findAllCached() {
+    public TaskDTO[] findAllFallback() {
         if (cacheManager.getCache("tasks") != null && cacheManager.getCache("tasks").get(SimpleKey.EMPTY) != null) {
             return cacheManager.getCache("tasks").get(SimpleKey.EMPTY, TaskDTO[].class);
         } else {

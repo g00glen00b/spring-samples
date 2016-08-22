@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 public class TaskServiceImpl {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @CachePut(value = "tasks", condition = "#noCache")
-    @Cacheable(value = "tasks", condition = "!#noCache")
+    @CachePut(value = "tasks", condition = "#noCache", key = "#noCache")
+    @Cacheable(value = "tasks", condition = "!#noCache", key = "!#noCache")
     public List<TaskDTO> findAll(boolean noCache) {
         logger.info("Retrieving tasks");
         return Arrays.asList(new TaskDTO(1L, "My first task", true), new TaskDTO(2L, "My second task", false));
