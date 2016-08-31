@@ -10,7 +10,7 @@
   function TasksController(Task) {
     var tc = this;
     tc.$onInit = onInit;
-  //   tc.updateTask = updateTask;
+    tc.updateTask = updateTask;
   //   tc.deleteTask = deleteTask;
   //   tc.createTask = createTask;
   //
@@ -21,10 +21,10 @@
         tc.tasks = tasks;
       });
     }
-  //
-  //   function updateTask(task) {
-  //     task.$update();
-  //   }
+
+    function updateTask(task) {
+      task.$update();
+    }
   //
   //   function deleteTask(task) {
   //     task.$delete(function() {
