@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="nine columns">
+    <input type="checkbox" name="completed" ng-model="te.task.completed" ng-change="te.onUpdate({ task: te.task })">
+    <span>{{te.task.description}}</span>
+  </div>
+  <div class="three columns">
+    <button class="button u-full-width" type="submit" ng-click="te.onDelete({ task: te.task })">Delete</button>
+  </div>
+</div>

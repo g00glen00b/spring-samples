@@ -1,0 +1,14 @@
+<form ng-submit="tf.create(tf.task, taskForm)" name="taskForm">
+  <div class="row">
+    <div class="nine columns">
+      <input type="text" placeholder="Description of the task" class="u-full-width" ng-model="tf.task.description"
+             required minlength="3" maxlength="64" name="description">
+      <span ng-show="taskForm.description.$error.required && taskForm.description.$dirty">The description is a required field</span>
+      <span ng-show="taskForm.description.$error.minlength && taskForm.description.$dirty">The description should be at least 3 characters</span>
+      <span ng-show="taskForm.description.$error.maxlength && taskForm.description.$dirty">The description should be at most 64 characters</span>
+    </div>
+    <div class="three columns">
+      <button type="submit" class="button-primary u-full-width" ng-disabled="taskForm.$invalid">Add</button>
+    </div>
+  </div>
+</form>
