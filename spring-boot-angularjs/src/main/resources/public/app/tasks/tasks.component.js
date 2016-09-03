@@ -7,12 +7,12 @@
     controllerAs: 'tc'
   });
 
-  function TasksController(Task) {
+  function TasksController(Task, toastr) {
     var tc = this;
     tc.$onInit = onInit;
     tc.updateTask = updateTask;
-  //   tc.deleteTask = deleteTask;
-  //   tc.createTask = createTask;
+    tc.deleteTask = deleteTask;
+    tc.createTask = createTask;
   //
     ////////
   //
@@ -25,21 +25,24 @@
     function updateTask(task) {
       task.$update();
     }
-  //
-  //   function deleteTask(task) {
-  //     task.$delete(function() {
-  //       var index = tc.tasks.indexOf(task);
-  //       if (index >= 0) {
-  //         tc.tasks.splice(index, 1);
-  //       }
-  //     });
-  //   }
-  //
-  //   function createTask(task) {
-  //     tc.tasks.push(task);
-  //     task.$save();
-  //   }
+
+    function deleteTask(task) {
+      task.$delete(function() {
+        var index = tc.tasks.indexOf(task);
+        if (index >= 0) {
+          tc.tasks.splice(index, 1);
+        }
+      });
+    }
+
+    function createTask(task) {
+      task.$save(function() {
+        tc.tasks.push(task);
+      }, function(err) {
+        toastr.error(err.data.message);
+      });
+    }
   }
-  //
-  // TasksController.$inject = ['Task'];
+
+  TasksController.$inject = ['Task', 'toastr'];
 }(angular));

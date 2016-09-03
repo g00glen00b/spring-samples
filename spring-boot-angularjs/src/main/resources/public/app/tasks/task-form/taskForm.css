@@ -1,4 +1,5 @@
-.button-primary[disabled], .button-primary[disabled]:hover {
+.button-primary[disabled],
+.button-primary[disabled]:hover {
     background: #ccc;
     border-color: #ccc;
     text-shadow: none;

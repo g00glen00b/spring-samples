@@ -1,8 +1,7 @@
 <div>
   <h1>My tasks</h1>
-  <task-entry ng-repeat="task in tc.tasks | orderBy:'description'" task="task">{{task.description}}</task-entry>
-  <!--<task-entry ng-repeat="task in (tc.tasks | orderBy:'description') track by task.id" task="task"-->
-              <!--on-update="tc.updateTask(task)" on-delete="tc.deleteTask(task)"></task-entry>-->
-  <!--<hr />-->
-  <!--<task-form on-create="tc.createTask(task)"></task-form>-->
+  <task-entry ng-repeat="task in tc.tasks | orderBy:'description'" task="task"
+              on-update="tc.updateTask(task)" on-delete="tc.deleteTask(task)">{{task.description}}</task-entry>
+  <hr />
+  <task-form on-create="tc.createTask(task)"></task-form>
 </div>
