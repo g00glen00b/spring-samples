@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<docker.baseDir>src/main/docker</docker.baseDir>
 	</properties>
 
 	<dependencies>
@@ -62,13 +63,18 @@
                 <version>0.4.11</version>
                 <configuration>
                     <imageName>g00glen00b/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <dockerDirectory>${docker.baseDir}</dockerDirectory>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
                             <include>${project.build.finalName}.jar</include>
                         </resource>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${docker.baseDir}</directory>
+							<include>wrapper.sh</include>
+						</resource>
                     </resources>
                 </configuration>
             </plugin>
