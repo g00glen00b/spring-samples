@@ -4,10 +4,10 @@ services:
   demo-mysql:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=p4SSW0rd
-      - MYSQL_DATABASE=demo
-      - MYSQL_USER=dbuser
-      - MYSQL_PASSWORD=dbp4ss
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
   spring-boot-jpa-docker-webapp:
     image: g00glen00b/spring-boot-jpa-docker-webapp
     depends_on:
@@ -15,8 +15,8 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DATABASE_HOST=demo-mysql
-      - DATABASE_USER=dbuser
-      - DATABASE_PASSWORD=dbp4ss
-      - DATABASE_NAME=demo
-      - DATABASE_PORT=3306
+      - DATABASE_HOST=${MYSQL_HOST}
+      - DATABASE_USER=${MYSQL_USER}
+      - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+      - DATABASE_NAME=${MYSQL_DATABASE}
+      - DATABASE_PORT=${MYSQL_PORT}

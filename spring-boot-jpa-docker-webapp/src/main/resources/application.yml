@@ -7,12 +7,11 @@ spring:
     initialize: false
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
-
 ---
 spring:
   profiles: container
   datasource:
-    url: jdbc:mysql://${DATABAS_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
     initialize: true
