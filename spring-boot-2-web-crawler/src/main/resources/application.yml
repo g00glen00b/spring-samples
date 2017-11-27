@@ -1,0 +1,18 @@
+crawler:
+  seed: https://g00glen00b.be
+  depth: 3
+  # 1 hour
+  schedule-delay-millis: 3600000
+logging:
+  level:
+    be.g00glen00b: info
+spring:
+  data:
+    mongodb:
+      database: webpages
+      username: webpage-admin
+      password: webp4ge
+  jackson:
+    serialization:
+      indent_output: true
+      write_dates_as_timestamps: false
