@@ -23,6 +23,6 @@ This is a collection of small applications demonstrating certain features of Spr
 | [Using the Netflix stack with Spring boot: Hystrix](https://g00glen00b.be/spring-boot-netflix-hystrix/) | [spring-boot-hystrix](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-hystrix) |
 | [Mapping with Dozer](https://g00glen00b.be/mapping-with-dozer/) | [spring-boot-jpa-dozer-webapp](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-jpa-dozer-webapp) |
 | [Mapping beans with MapStruct](https://g00glen00b.be/mapstruct/) | [spring-boot-jpa-mapstruct-webapp](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-jpa-mapstruct-webapp) |
-| [Getting started with Spring boot 2.0](https://g00glen00b.be/starting-with-spring-boot-2/) | [spring-boot-2-web-crawler](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-2-web-crawler) |
+| [Getting started with Spring boot 2.0](https://g00glen00b.be/getting-started-spring-boot-2/) | [spring-boot-2-web-crawler](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-2-web-crawler) |
 |                                          |                                          |
 
