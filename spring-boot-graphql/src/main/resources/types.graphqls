@@ -1,0 +1,26 @@
+type Query {
+    articles: [Article]
+    profiles: [Profile]
+    comments: [Comment]
+    article(id: Int!): Article
+}
+
+type Article {
+    id: Int!
+    title: String!
+    text: String!
+    author: Profile!
+    comments: [Comment]
+}
+
+type Profile {
+    id: Int!
+    username: String!
+    bio: String
+}
+
+type Comment {
+    id: Int!
+    text: String!
+    author: Profile!
+}

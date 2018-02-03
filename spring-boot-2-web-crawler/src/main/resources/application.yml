@@ -1,6 +1,6 @@
 crawler:
   seed: https://g00glen00b.be
-  depth: 3
+  depth: 1
   # 1 hour
   schedule-delay-millis: 3600000
 logging:

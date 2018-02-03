@@ -30,6 +30,6 @@ public class WebCrawlerApiApplication {
 
     @Bean
     public RouterFunction<?> routes(WebpageHandler handler) {
-        return route(GET("/api/webpage").and(accept(MediaType.APPLICATION_JSON)), handler::findAll);
+        return route(GET("/api/webpage"), handler::findAll);
     }
 }
