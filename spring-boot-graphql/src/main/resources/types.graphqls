@@ -5,6 +5,17 @@ type Query {
     article(id: Int!): Article
 }
 
+type Mutation {
+    createArticle(input: CreateArticleInput!): Article!
+    updateArticle(input: UpdateArticleInput!): Article!
+    deleteArticle(id: Int!): Int!
+    createProfile(input: CreateProfileInput!): Profile!
+    updateProfile(input: UpdateProfileInput!): Profile!
+    deleteProfile(id: Int!): Int!
+    createComment(input: CreateCommentInput!): Comment!
+    deleteComment(id: Int!): Int!
+}
+
 type Article {
     id: Int!
     title: String!
@@ -23,4 +34,32 @@ type Comment {
     id: Int!
     text: String!
     author: Profile!
+}
+
+input CreateArticleInput {
+    title: String!
+    text: String!
+    authorId: Int!
+}
+
+input UpdateArticleInput {
+    id: Int!
+    title: String!
+    text: String!
+}
+
+input CreateProfileInput {
+    username: String!
+    bio: String
+}
+
+input UpdateProfileInput {
+    id: Int!
+    bio: String
+}
+
+input CreateCommentInput {
+    text: String!
+    authorId: Int!
+    articleId: Int!
 }
