@@ -1,0 +1,4 @@
+reader:
+  path-pattern: file:/workspaces/notes/**/*.md
+  extract-path: /update/extract
+spring.data.solr.host: http://localhost:8983/solr/markdown

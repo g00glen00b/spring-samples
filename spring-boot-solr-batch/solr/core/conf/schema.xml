@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<schema name="markdown" version="1.1">
+    <types>
+        <fieldType name="key" class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+        <fieldType name="long" class="solr.LongPointField" />
+        <fieldType name="date" class="solr.DatePointField" />
+        <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+            <analyzer type="index">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+            <analyzer type="query">
+                <tokenizer class="solr.StandardTokenizerFactory"/>
+                <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+                <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+                <filter class="solr.LowerCaseFilterFactory"/>
+            </analyzer>
+        </fieldType>
+    </types>
+
+    <fields>
+        <field name="file.id" type="key" indexed="true" stored="true"/>
+        <field name="_version_" type="long" indexed="true" stored="true"/>
+        <field name="title" type="text_general" indexed="true" stored="true"/>
+        <field name="subject" type="text_general" indexed="true" stored="true"/>
+        <field name="content" type="text_general" indexed="true" stored="true"/>
+        <field name="page" type="long" indexed="true" stored="true"/>
+        <field name="last_modified" type="date" indexed="true" stored="true" default="NOW"/>
+        <dynamicField name="ignored_*" type="text_general" indexed="true" stored="true"/>
+    </fields>
+
+    <uniqueKey>file.id</uniqueKey>
+</schema>

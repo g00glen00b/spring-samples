@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <luceneMatchVersion>6.0.0</luceneMatchVersion>
+    <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
+    <dataDir>${solr.markdown.data.dir:}</dataDir>
+    <schemaFactory class="ClassicIndexSchemaFactory"/>
+    <lib dir="../../solr-cell/" regex=".*\.jar" />
+
+    <updateHandler class="solr.DirectUpdateHandler2">
+        <updateLog>
+            <str name="dir">${solr.markdown.data.dir:}</str>
+        </updateLog>
+    </updateHandler>
+
+    <requestDispatcher>
+        <requestParsers enableRemoteStreaming="false" multipartUploadLimitInKB="-1" formdataUploadLimitInKB="-1" />
+    </requestDispatcher>
+
+    <requestHandler name="/select" class="solr.SearchHandler"/>
+
+    <requestHandler name="/update/extract" class="org.apache.solr.handler.extraction.ExtractingRequestHandler">
+        <lst name="defaults">
+            <str name="fmap.Last-Modified">last_modified</str>
+            <str name="fmap.content">content</str>
+            <str name="uprefix">ignored_</str>
+        </lst>
+    </requestHandler>
+
+    <admin>
+        <defaultQuery>solr</defaultQuery>
+    </admin>
+
+    <initParams path="/select">
+        <lst name="defaults">
+            <str name="df">content</str>
+            <str name="q.op">OR</str>
+        </lst>
+    </initParams>
+</config>
