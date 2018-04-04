@@ -1,4 +1,4 @@
-package be.g00glen00b.apps.solr;
+package be.g00glen00b.apps;
 
 import org.springframework.batch.item.ItemWriterException;
 

@@ -6,5 +6,5 @@ services:
     ports:
       - "8983:8983"
     volumes:
-      - ./solr/core/:/opt/solr/server/solr/markdown/
+      - ./solr/core/:/opt/solr/server/solr/processing/
       - ./solr/libs/:/opt/solr/server/solr-cell/

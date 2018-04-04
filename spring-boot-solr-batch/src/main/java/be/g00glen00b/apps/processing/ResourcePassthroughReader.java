@@ -1,4 +1,4 @@
-package be.g00glen00b.apps.resource;
+package be.g00glen00b.apps.processing;
 
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemStreamException;

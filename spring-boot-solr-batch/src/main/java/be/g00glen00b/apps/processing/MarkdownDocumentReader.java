@@ -1,6 +1,6 @@
-package be.g00glen00b.apps.markdown;
+package be.g00glen00b.apps.processing;
 
-import be.g00glen00b.apps.resource.ResourcePassthroughReader;
+import be.g00glen00b.apps.job.MarkdownSolrBatchConfigurationProperties;
 import lombok.AllArgsConstructor;
 import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.core.io.Resource;
@@ -13,8 +13,8 @@ import java.io.IOException;
 
 @Component
 @AllArgsConstructor
-public class MarkdownFileReader extends MultiResourceItemReader<Resource> {
-    private MarkdownReaderConfigurationProperties configurationProperties;
+public class MarkdownDocumentReader extends MultiResourceItemReader<Resource> {
+    private MarkdownSolrBatchConfigurationProperties configurationProperties;
 
     @PostConstruct
     public void initialize() throws IOException {

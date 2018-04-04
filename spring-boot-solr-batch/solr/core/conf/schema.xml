@@ -20,7 +20,7 @@
     </types>
 
     <fields>
-        <field name="file.id" type="key" indexed="true" stored="true"/>
+        <field name="file.id" type="text_general" indexed="true" stored="true"/>
         <field name="_version_" type="long" indexed="true" stored="true"/>
         <field name="title" type="text_general" indexed="true" stored="true"/>
         <field name="subject" type="text_general" indexed="true" stored="true"/>

@@ -1,4 +1,11 @@
-reader:
+batch:
   path-pattern: file:/workspaces/notes/**/*.md
   extract-path: /update/extract
-spring.data.solr.host: http://localhost:8983/solr/markdown
+  cron: 0 0 * * * *
+spring:
+  batch:
+    job:
+      enabled: false
+  data:
+    solr:
+      host: http://localhost:8983/solr
