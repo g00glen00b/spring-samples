@@ -36,4 +36,13 @@
             <str name="q.op">OR</str>
         </lst>
     </initParams>
+
+    <updateRequestProcessorChain default="true">
+        <processor class="solr.LogUpdateProcessorFactory" />
+        <processor class="solr.DistributedUpdateProcessorFactory" />
+        <processor class="solr.RunUpdateProcessorFactory" />
+        <processor class="solr.FirstFieldValueUpdateProcessorFactory">
+            <str name="fieldName">creation_date</str>
+        </processor>
+    </updateRequestProcessorChain>
 </config>

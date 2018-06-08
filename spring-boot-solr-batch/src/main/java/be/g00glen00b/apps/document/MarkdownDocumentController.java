@@ -38,7 +38,7 @@ public class MarkdownDocumentController {
 
     private MarkdownDocumentDTO getResult(MarkdownDocument document, List<HighlightEntry.Highlight> highlights) {
         Map<String, List<String>> highlightMap = highlights.stream().collect(Collectors.toMap(h -> h.getField().getName(), HighlightEntry.Highlight::getSnipplets));
-        return new MarkdownDocumentDTO(document.getId(), document.getLastModified(), document.getScore(), highlightMap);
+        return new MarkdownDocumentDTO(document.getId(), document.getLastModified(), document.getContent(), document.getScore(), highlightMap);
     }
 
     private HttpHeaders getHeaders(Page<?> page) {

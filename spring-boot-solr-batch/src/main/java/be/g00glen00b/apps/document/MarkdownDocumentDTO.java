@@ -12,6 +12,7 @@ import java.util.Map;
 public class MarkdownDocumentDTO {
     private String id;
     private LocalDateTime lastModified;
+    private String content;
     private float score;
     private Map<String, List<String>> highlights;
 }

@@ -27,7 +27,8 @@
         <field name="content" type="text_general" indexed="true" stored="true"/>
         <field name="page" type="long" indexed="true" stored="true"/>
         <field name="last_modified" type="date" indexed="true" stored="true" default="NOW"/>
-        <dynamicField name="ignored_*" type="text_general" indexed="true" stored="true"/>
+        <field name="creation_time"  type="date" indexed="false"  stored="true" required="false" multiValued="true" />
+        <dynamicField name="ignored_*" type="text_general" indexed="false" stored="false"/>
     </fields>
 
     <uniqueKey>file.id</uniqueKey>
