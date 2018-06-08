@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -27,6 +27,6 @@ public class UserInput {
 	@Adult(message = "{user.dateOfBirth.adult}")
 	private LocalDate dateOfBirth;
 	@NotNull
-	@Min(0)
+	@PositiveOrZero
 	private Integer siblings;
 }
