@@ -1,0 +1,19 @@
+[[users_find_all_invalid_page]]
+==== Invalid page number
+When providing a negative page number, a **400 Bad Request** is provided, with a different response containing an error message.
+
+[[users_find_all_invalid_page_request]]
+===== Request
+include::{snippets}/find-all-should-return-error-if-page-is-negative/http-request.adoc[]
+
+[[users_find_all_invalid_page_response]]
+===== Response
+include::{snippets}/find-all-should-return-error-if-page-is-negative/http-response.adoc[]
+
+[[users_find_all_invalid_page_response_body]]
+====== Response body
+include::{snippets}/find-all-should-return-error-if-page-is-negative/response-fields.adoc[]
+
+[[users_find_all_invalid_page_curl]]
+===== cURL
+include::{snippets}/find-all-should-return-error-if-page-is-negative/curl-request.adoc[]

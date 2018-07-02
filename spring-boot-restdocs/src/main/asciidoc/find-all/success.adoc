@@ -1,0 +1,27 @@
+[[users_find_all_success]]
+==== Successful call
+When making a successfull call to this API endpoint, the following request parameters and body can be expected.
+
+[[users_find_all_success_request]]
+===== Request
+include::{snippets}/find-all-should-return-list-of-users/http-request.adoc[]
+
+[[users_find_all_success_request_parameters]]
+====== Request parameters
+include::{snippets}/find-all-should-return-list-of-users/request-parameters.adoc[]
+
+[[users_find_all_success_response]]
+===== Response
+include::{snippets}/find-all-should-return-list-of-users/http-response.adoc[]
+
+[[users_find_all_success_response_headers]]
+====== Response headers
+include::{snippets}/find-all-should-return-list-of-users/response-headers.adoc[]
+
+[[users_find_all_success_response_body]]
+====== Response body
+include::{snippets}/find-all-should-return-list-of-users/response-fields.adoc[]
+
+[[users_find_all_success_curl]]
+===== cURL
+include::{snippets}/find-all-should-return-list-of-users/curl-request.adoc[]

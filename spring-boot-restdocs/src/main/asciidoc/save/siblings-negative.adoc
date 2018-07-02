@@ -1,0 +1,21 @@
+[[users_save_siblings_negative]]
+==== Negative number of siblings
+When you're trying to create a user without a negative number of siblings, a **400 Bad Request** is provided, with a different response containing an error message.
+
+[[users_save_siblings_negative_request]]
+===== Request
+The structure of the request is similar to a successful call (see <<users_save_success_request>>), but using a negative number of siblings:
+
+include::{snippets}/save-should-return-error-if-siblings-is-negative/http-request.adoc[]
+
+[[users_save_siblings_negative_response]]
+===== Response
+include::{snippets}/save-should-return-error-if-siblings-is-negative/http-response.adoc[]
+
+[[users_save_siblings_negative_response_body]]
+====== Response body
+The response body is the same as when you're trying to create a new user without a last name (see <<users_save_last_name_empty_response_body>>).
+
+[[users_save_siblings_negative_curl]]
+===== cURL
+include::{snippets}/save-should-return-error-if-siblings-is-negative/curl-request.adoc[]

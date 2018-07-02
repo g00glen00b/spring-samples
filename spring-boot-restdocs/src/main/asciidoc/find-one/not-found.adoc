@@ -1,0 +1,21 @@
+[[users_find_one_not_found]]
+==== User not found
+When a user with the given identifier isn't found, a **404 Not Found** is provided, with a different response containing an error message.
+
+[[users_find_one_not_found_request]]
+===== Request
+The structure of the request is similar to a successful call (see <<users_find_one_success_request>>), but using an identifier that is not known:
+
+include::{snippets}/find-one-should-return-error-if-not-found/http-request.adoc[]
+
+[[users_find_one_not_found_response]]
+===== Response
+include::{snippets}/find-one-should-return-error-if-not-found/http-response.adoc[]
+
+[[users_find_one_not_found_response_body]]
+====== Response body
+include::{snippets}/find-one-should-return-error-if-not-found/response-fields.adoc[]
+
+[[users_find_one_not_found_curl]]
+===== cURL
+include::{snippets}/find-one-should-return-error-if-not-found/curl-request.adoc[]

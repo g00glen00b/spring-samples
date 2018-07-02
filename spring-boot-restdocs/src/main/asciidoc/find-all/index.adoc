@@ -1,0 +1,7 @@
+[[users_find_all]]
+=== Find all users
+
+include::success.adoc[]
+include::defaulting.adoc[]
+include::invalid-page.adoc[]
+include::invalid-size.adoc[]

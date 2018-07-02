@@ -1,0 +1,28 @@
+[[users_save_success]]
+==== Successful call
+When making a successfull call to this API endpoint, the following request parameters and body can be expected.
+
+[[users_save_success_request]]
+===== Request
+include::{snippets}/save-should-return-user/http-request.adoc[]
+
+[[users_save_success_request_parameters]]
+====== Request body
+include::{snippets}/save-should-return-user/request-fields.adoc[]
+
+[[users_save_success_response]]
+===== Response
+include::{snippets}/save-should-return-user/http-response.adoc[]
+
+[[users_save_success_response_headers]]
+====== Response headers
+include::{snippets}/save-should-return-user/response-headers.adoc[]
+
+[[users_save_success_response_body]]
+====== Response body
+include::{snippets}/save-should-return-user/response-fields.adoc[]
+
+
+[[users_save_success_curl]]
+===== cURL
+include::{snippets}/save-should-return-user/curl-request.adoc[]

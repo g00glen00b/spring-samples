@@ -1,0 +1,15 @@
+[[users_find_all_defaulting]]
+==== Defaulting
+When leaving away the `page` and `size` parameters, they're being defaulted to 1 and 10 respectively.
+
+[[users_find_all_defaulting_request]]
+===== Request
+include::{snippets}/find-all-should-default-to-page-one-and-size-ten/http-request.adoc[]
+
+[[users_find_all_defaulting_response]]
+===== Response
+The response is the same as the successful response (see <<users_find_all_success_response>>).
+
+[[users_find_all_defaulting_curl]]
+===== cURL
+include::{snippets}/find-all-should-default-to-page-one-and-size-ten/curl-request.adoc[]

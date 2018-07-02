@@ -1,0 +1,23 @@
+[[users_find_one_success]]
+==== Successful call
+When making a successfull call to this API endpoint, the following request parameters and body can be expected.
+
+[[users_find_one_success_request]]
+===== Request
+include::{snippets}/find-one-should-return-user/http-request.adoc[]
+
+[[users_find_one_success_path_parameters]]
+====== Request parameters
+include::{snippets}/find-one-should-return-user/path-parameters.adoc[]
+
+[[users_find_one_success_response]]
+===== Response
+include::{snippets}/find-one-should-return-user/http-response.adoc[]
+
+[[users_find_one_success_response_body]]
+====== Response body
+include::{snippets}/find-one-should-return-user/response-fields.adoc[]
+
+[[users_find_one_success_curl]]
+===== cURL
+include::{snippets}/find-one-should-return-user/curl-request.adoc[]

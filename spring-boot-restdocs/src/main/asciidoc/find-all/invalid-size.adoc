@@ -1,0 +1,17 @@
+[[users_find_all_invalid_size]]
+==== Invalid page size
+Similar to the page number, the page size can also not be a negative number.
+
+[[users_find_all_invalid_size_request]]
+===== Request
+include::{snippets}/find-all-should-return-error-if-page-size-is-negative/http-request.adoc[]
+
+[[users_find_all_invalid_size_response]]
+===== Response
+include::{snippets}/find-all-should-return-error-if-page-size-is-negative/http-response.adoc[]
+
+The structure of the response body is similar to the response body of having an invalid page (see <<users_find_all_invalid_page_response_body>>).
+
+[[users_find_all_invalid_size_curl]]
+===== cURL
+include::{snippets}/find-all-should-return-error-if-page-size-is-negative/curl-request.adoc[]

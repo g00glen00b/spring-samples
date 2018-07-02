@@ -1,0 +1,21 @@
+[[users_save_first_name_lengthy]]
+==== First name too long
+When you're trying to create a user with a first name longer than sixty characters, a **400 Bad Request** is provided, with a different response containing an error message.
+
+[[users_save_first_name_lengthy_request]]
+===== Request
+The structure of the request is similar to a successful call (see <<users_save_success_request>>), but using a very long first name:
+
+include::{snippets}/save-should-return-error-if-first-name-is-too-long/http-request.adoc[]
+
+[[users_save_first_name_lengthy_response]]
+===== Response
+include::{snippets}/save-should-return-error-if-first-name-is-too-long/http-response.adoc[]
+
+[[users_save_first_name_lengthy_response_body]]
+====== Response body
+The response body is the same as when you're trying to create a new user without a last name (see <<users_save_last_name_empty_response_body>>).
+
+[[users_save_first_name_lengthy_curl]]
+===== cURL
+include::{snippets}/save-should-return-error-if-first-name-is-too-long/curl-request.adoc[]

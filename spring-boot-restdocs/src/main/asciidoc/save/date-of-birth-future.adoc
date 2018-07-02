@@ -1,0 +1,21 @@
+[[users_save_date_of_birth_future]]
+==== Date of birth in future
+When you're trying to create a user with a date of birth in the future, a **400 Bad Request** is provided, with a different response containing an error message.
+
+[[users_save_date_of_birth_future_request]]
+===== Request
+The structure of the request is similar to a successful call (see <<users_save_success_request>>), but using a future date as a date of birth:
+
+include::{snippets}/save-should-return-error-if-date-of-birth-is-in-future/http-request.adoc[]
+
+[[users_save_date_of_birth_future_response]]
+===== Response
+include::{snippets}/save-should-return-error-if-date-of-birth-is-in-future/http-response.adoc[]
+
+[[users_save_date_of_birth_future_response_body]]
+====== Response body
+The response body is the same as when you're trying to create a new user without a last name (see <<users_save_last_name_empty_response_body>>).
+
+[[users_save_date_of_birth_future_curl]]
+===== cURL
+include::{snippets}/save-should-return-error-if-date-of-birth-is-in-future/curl-request.adoc[]
