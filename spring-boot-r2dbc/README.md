@@ -8,10 +8,10 @@ This project demonstrates how to use R2DBC with Spring boot to reactively connec
 docker-compose up
 ```
 
-Additionally, you can run the Spring boot application by using the Maven wrapper:
+Additionally, you can run the Spring boot application by using Maven:
 
 ```
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 This application will create the schema if not present yet, and insert a few records. Accessing the data can be done through a REST API by calling http://localhost:8080/api/person.
