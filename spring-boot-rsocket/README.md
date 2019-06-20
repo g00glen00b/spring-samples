@@ -8,18 +8,18 @@ This project demonstrates how to use R2DBC with Spring boot to reactively connec
 docker-compose up
 ```
 
-Additionally, you can run the producer Spring boot application by using the Maven wrapper:
+Additionally, you can run the producer Spring boot application by using Maven with the **producer** profile:
 
 ```
-./mvnw spring-boot:run -P producer
+mvn spring-boot:run -P producer
 ```
 
 This application will create the schema if not present yet, and insert a few records. Additionally it will set up an RSocket server on port 8000.
 
-To run the consumer application, you can use the Maven wrapper with the consumer profile:
+To run the consumer application, you can use Maven with the **consumer** profile:
 
 ```
-./mvnw spring-boot:run -P consumer
+mvn spring-boot:run -P consumer
 ```
 
 
