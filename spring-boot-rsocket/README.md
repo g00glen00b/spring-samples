@@ -1,14 +1,17 @@
-# Example using the Spring boot starter for Spring Data R2DBC
+# Example using the Spring boot starter for RSocket with R2DBC
 
 ## Setup
 
-This project demonstrates how to use R2DBC with Spring boot to reactively connect to a relational database. The database I'm using in this example is PostgreSQL. To set up a PostgreSQL database, you can run the Docker container by using the following command:
+This project demonstrates how RSocket can be used with Spring boot to stream our data reactively over the network. Additionally we're using R2DBC to reactively fetch data from a relational database.
+The database used in the project is PostgreSQL. To set up PostgreSQL, you can run a Docker container by using Docker Compose:
 
 ```
 docker-compose up
 ```
 
-Additionally, you can run the producer Spring boot application by using Maven with the **producer** profile:
+The application itself contains two smaller applications, one being used to fetch data from the database provide an RSocket server, and another to consume the messages from RSocket.
+
+To run the producer application, you can use Maven with the **producer** profile:
 
 ```
 mvn spring-boot:run -P producer
