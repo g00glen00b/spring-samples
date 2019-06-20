@@ -22,3 +22,4 @@ To run the consumer application, you can use the Maven wrapper with the consumer
 ./mvnw spring-boot:run -P consumer
 ```
 
+
