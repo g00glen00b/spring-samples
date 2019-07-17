@@ -1,6 +1,5 @@
 package be.g00glen00b.apps.rsocket.consumer;
 
-import be.g00glen00b.apps.rsocket.PersonInputMessage;
 import be.g00glen00b.apps.rsocket.PersonMessage;
 import io.rsocket.RSocket;
 import io.rsocket.RSocketFactory;
@@ -8,15 +7,12 @@ import io.rsocket.frame.decoder.PayloadDecoder;
 import io.rsocket.transport.netty.client.TcpClientTransport;
 import io.rsocket.util.DefaultPayload;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
 import org.springframework.messaging.rsocket.RSocketRequester;
 import org.springframework.messaging.rsocket.RSocketStrategies;
-import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.util.MimeTypeUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,12 +27,10 @@ public class RSocketConsumerApplication {
     }
 
     @Bean
-    public ApplicationRunner consumer(RSocketStrategies strategies) {
+    public ApplicationRunner consumer(Mono<RSocketRequester> requester) {
         return args -> {
             CountDownLatch closeLatch = new CountDownLatch(1);
-            rSocket()
-                .doOnNext(socket -> log.info("🚀 Connected to RSocket"))
-                .map(rsocket -> rSocketRequester(strategies, rsocket))
+            requester
                 .flatMapMany(this::findPeople)
                 .map(PersonMessage::toString)
                 .subscribe(log::info, err -> log.error("Something went wrong", err), closeLatch::countDown);
@@ -44,23 +38,41 @@ public class RSocketConsumerApplication {
         };
     }
 
-    private Flux<PersonMessage> findPeople(RSocketRequester requester) {
-        return requester
-            .route("findPeople")
-            .data(DefaultPayload.create(""))
-            .retrieveFlux(PersonMessage.class);
+    @Bean
+    public ApplicationRunner consumer2(Mono<RSocketRequester> requester) {
+        return args -> {
+            CountDownLatch closeLatch = new CountDownLatch(1);
+            requester
+                .flatMapMany(this::findPeople)
+                .map(PersonMessage::toString)
+                .subscribe(log::info, err -> log.error("Something went wrong", err), closeLatch::countDown);
+            closeLatch.await();
+        };
     }
 
-    private RSocketRequester rSocketRequester(RSocketStrategies strategies, RSocket rsocket) {
-        return RSocketRequester.wrap(rsocket, MimeTypeUtils.parseMimeType("application/cbor"), strategies);
+    @Bean
+    public Mono<RSocketRequester> rSocketRequester(Mono<RSocket> rSocket, RSocketStrategies strategies) {
+        return rSocket
+            .map(socket -> RSocketRequester.wrap(socket, MimeTypeUtils.parseMimeType("application/cbor"), strategies))
+            .cache();
     }
 
-    private Mono<RSocket> rSocket() {
+    @Bean
+    public Mono<RSocket> rSocket() {
         return RSocketFactory
             .connect()
             .dataMimeType("application/cbor")
             .frameDecoder(PayloadDecoder.ZERO_COPY)
             .transport(TcpClientTransport.create(8000))
-            .start();
+            .start()
+            .doOnNext(socket -> log.info("🚀 Connected to RSocket"))
+            .cache();
+    }
+
+    private Flux<PersonMessage> findPeople(RSocketRequester requester) {
+        return requester
+            .route("findPeople")
+            .data(DefaultPayload.create(""))
+            .retrieveFlux(PersonMessage.class);
     }
 }
