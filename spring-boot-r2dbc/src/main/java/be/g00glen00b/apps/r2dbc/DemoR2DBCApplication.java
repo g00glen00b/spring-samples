@@ -40,7 +40,7 @@ public class DemoR2DBCApplication {
 	}
 
 	private Mono<Integer> executeSql(DatabaseClient client, String sql) {
-		return client.execute().sql(sql).fetch().rowsUpdated();
+		return client.execute(sql).fetch().rowsUpdated();
 	}
 
 	private Mono<String> getSchema() throws URISyntaxException {
