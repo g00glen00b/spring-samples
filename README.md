@@ -17,11 +17,11 @@ This is a collection of small applications demonstrating certain features of Spr
 | [Consuming REST API's with Spring](https://dimitr.im/consuming-rest-apis-with-spring/) | [spring-boot-rest](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-rest) |
 | [Documenting your REST API with Swagger and Springfox](https://dimitr.im/documenting-rest-api-swagger-springfox/) | [spring-boot-swagger](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-swagger) |
 | [Exploring contract first options with Swagger](https://dimitr.im/exploring-contract-first-options-swagger/) | [spring-boot-swagger](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-swagger) |
-| [Utilizing cache abstraction with Spring boot and Ehcache](https://dimitr.im/spring-boot-cache-ehcache/) | [spring-boot-ehcache](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-ehcache) |
+| [Using Ehcache 3 with Spring boot](https://dimitr.im/spring-boot-cache-ehcache/) | [spring-boot-ehcache](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-ehcache) |
 | [Using the Netflix stack with Spring boot: Eureka](https://dimitr.im/using-the-netflix-stack-with-spring-boot-eureka/) | [spring-boot-eureka](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-eureka) |
 | [Using the Netflix stack with Spring boot: Ribbon](https://dimitr.im/using-netflix-stack-spring-boot-ribbon/) | [spring-boot-eureka](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-eureka) |
 | [Using the Netflix stack with Spring boot: Hystrix](https://dimitr.im/spring-boot-netflix-hystrix/) | [spring-boot-hystrix](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-hystrix) |
-| [Mapping with Dozer](https://dimitr.im/mapping-with-dozer/) | [spring-boot-jpa-dozer-webapp](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-jpa-dozer-webapp) |
+| [Mapping with Dozer](https://dimitr.im/mapping-with-dozer/)  | [spring-boot-jpa-dozer-webapp](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-jpa-dozer-webapp) |
 | [Mapping beans with MapStruct](https://dimitr.im/mapstruct/) | [spring-boot-jpa-mapstruct-webapp](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-jpa-mapstruct-webapp) |
 | [Getting started with Spring boot 2.0](https://dimitr.im/getting-started-spring-boot-2/) | [spring-boot-2-web-crawler](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-2-web-crawler) |
 | [Validating the input of your REST API with Spring](https://dimitr.im/validating-the-input-of-your-rest-api-with-spring) | [spring-boot-validation](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-validation) |

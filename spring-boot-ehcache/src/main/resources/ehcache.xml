@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
-         updateCheck="true" monitoring="autodetect" dynamicConfig="true">
-
-    <cache name="tasks"
-           maxElementsInMemory="100" eternal="false"
-           overflowToDisk="false"
-           timeToLiveSeconds="300" timeToIdleSeconds="0"
-           memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+<config xmlns='http://www.ehcache.org/v3'>
+    <cache alias="tasks">
+        <key-type>java.lang.String</key-type>
+        <value-type>java.util.List</value-type>
+        <expiry>
+            <ttl unit="minutes">5</ttl>
+        </expiry>
+        <listeners>
+            <listener>
+                <class>be.g00glen00b.apps.springbootehcache.TaskCacheListener</class>
+                <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
+                <event-ordering-mode>ORDERED</event-ordering-mode>
+                <events-to-fire-on>CREATED</events-to-fire-on>
+                <events-to-fire-on>REMOVED</events-to-fire-on>
+                <events-to-fire-on>EXPIRED</events-to-fire-on>
+            </listener>
+        </listeners>
+        <resources>
+            <heap unit="kB">10</heap>
+        </resources>
+        <heap-store-settings>
+            <max-object-graph-size>2000</max-object-graph-size>
+            <max-object-size unit="kB">5</max-object-size>
+        </heap-store-settings>
     </cache>
-</ehcache>
+</config>
