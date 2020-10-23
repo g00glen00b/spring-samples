@@ -24,5 +24,6 @@ public class TaskFacade {
 
     @CacheEvict(value = "tasks", allEntries = true)
     public void clearCache() {
+        // not need to do anything
     }
 }
