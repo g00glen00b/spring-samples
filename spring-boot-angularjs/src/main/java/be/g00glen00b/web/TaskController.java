@@ -2,7 +2,7 @@ package be.g00glen00b.web;
 
 import be.g00glen00b.service.TaskNotFoundException;
 import be.g00glen00b.service.TaskServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/tasks")
 public class TaskController {
-    @Autowired
-    private TaskServiceImpl service;
-    @Autowired
-    private MessageSource messageSource;
+
+    private final TaskServiceImpl service;
+    private final MessageSource messageSource;
 
     @GetMapping()
     public List<TaskDTO> findAll() {
