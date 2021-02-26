@@ -5,14 +5,16 @@ import java.util.stream.Collectors;
 import be.g00glen00b.data.Task;
 import be.g00glen00b.data.TaskRepository;
 import be.g00glen00b.web.TaskDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@RequiredArgsConstructor
 @Service
 public class TaskServiceImpl {
-    @Autowired
-    private TaskRepository repository;
+
+    private final TaskRepository repository;
 
     public List<TaskDTO> findAll() {
         return repository.findAll().stream().map(this::getDTO).collect(Collectors.toList());
