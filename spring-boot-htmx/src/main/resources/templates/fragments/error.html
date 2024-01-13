@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div
+  th:fragment="error"
+  id="error"
+  class="danger alert"
+  role="alert"
+  hx-swap-oob="true">
+  <span th:text="${error}"></span>
+  <button
+    type="button"
+    _="
+      on click put '' into #error
+      then remove .danger from #error
+      then remove .alert from #error">
+    &times;
+  </button>
+</div>
+</body>
+</html>

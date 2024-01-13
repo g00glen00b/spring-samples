@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<form
+  th:fragment="new-task"
+  class="simple"
+  hx-post="/todoitem/add"
+  hx-target="#items"
+  hx-swap="outerHTML"
+  hx-on::after-request="this.reset()">
+  <label for="new-task">New task</label>
+  <input type="text" name="new-task" id="new-task" />
+  <button type="submit">Add</button>
+</form>
+</body>
+</html>

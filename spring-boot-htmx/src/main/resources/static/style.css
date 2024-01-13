@@ -1,0 +1,154 @@
+body {
+    background-color: #f3f3f9;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #051923;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, 0.1);
+    border: solid 1px #e5e7eb;
+    min-width: 20em;
+}
+
+label {
+    font-weight: 500;
+    margin: 0.3em 0;
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 0.8em;
+    border: solid 1px #e5e7eb;
+    background-color: #f3f3f9;
+    border-radius: 0.2em;
+    margin: 0.3em 0 1em;
+    font-size: 1em;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.checkbox {
+    margin: 0.3em 0 1em;
+}
+
+.checkbox label {
+    cursor: pointer;
+}
+
+button {
+    color: white;
+    background-color: #3e6abd;
+    font-weight: 500;
+    font-size: 1em;
+    padding: 0.8em;
+    border: none;
+    border-radius: 0.2em;
+    transition: background-color .3s;
+    margin: 0.3em 0 1em;
+}
+
+button:hover {
+    background-color: #29509a;
+}
+
+button:focus {
+    background-color: #173572;
+}
+
+a, a:visited {
+    color: #3e6abd;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a[hx-post], a[hx-delete] {
+    cursor: pointer;
+}
+
+.alert {
+    padding: 0.8em;
+    font-size: 1em;
+    border-radius: 0.2em;
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.danger.alert {
+    color: #831616;
+    background-color: #efc3c3;
+}
+
+.success.alert {
+    color: #073f1f;
+    background-color: #dbf2e4;
+}
+
+.alert button {
+    background: none;
+    color: inherit;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0 0 0 auto;
+    cursor: pointer;
+}
+
+form.simple {
+    display: flex;
+    flex-direction: row;
+}
+
+form.simple input {
+    flex-grow: 1;
+    margin-right: 1em;
+}
+
+form.simple label,
+table td.checkbox-column label {
+    display: none;
+}
+
+#items {
+    width: 30em;
+    margin-bottom: 2em;
+}
+
+#items td:first-child {
+    width: 4em;
+}
+
+#items tr td:last-child {
+    width: 6em;
+    text-align: right;
+}
+
+#items th, #items td {
+    text-align: left;
+    height: 2.5em;
+}
+
+input[type=checkbox] {
+    width: 1.5em;
+    height: 1.5em;
+    border: solid 1px #e5e7eb;
+    outline: none;
+    accent-color: #3e6abd;
+    color: white;
+}

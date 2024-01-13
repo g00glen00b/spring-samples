@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  db:
+    image: 'postgres:16-alpine'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_DB: htmx-example
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/:rw

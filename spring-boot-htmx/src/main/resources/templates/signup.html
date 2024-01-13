@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head (title='Sign up')}"></head>
+<body>
+<form
+  class="card"
+  th:action="@{/signup}"
+  th:object="${account}"
+  method="post">
+  <h1>Create an account</h1>
+  <p
+    th:if="${error}"
+    class="danger alert"
+    role="alert"
+    th:text="${error}">
+  </p>
+  <p
+    th:if="${success}"
+    class="success alert"
+    role="alert">
+    Your successfully signed up!
+  </p>
+  <label for="username">Your username</label>
+  <input
+    type="text"
+    name="username"
+    id="username"
+    th:field="*{username}"
+    placeholder="johndoe123"
+    required />
+  <label for="password">Password</label>
+  <input
+    type="password"
+    name="password"
+    id="password"
+    th:field="*{password}"
+    placeholder="••••••••"
+    required />
+  <label for="repeat-password">Confirm password</label>
+  <input
+    type="password"
+    name="password"
+    id="repeat-password"
+    placeholder="••••••••"
+    th:field="*{repeatPassword}"
+    required />
+  <button type="submit">Create an account</button>
+  <p>
+    Already have an account?
+    <a href="/login">Login here</a>
+  </p>
+</form>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org">
+<body>
+<table
+  id="items"
+  th:fragment="items (items)">
+  <tbody>
+  <tr th:each="item : ${items}">
+    <td class="checkbox-column">
+      <!--suppress HtmlFormInputWithoutLabel -->
+      <input
+        th:id="'complete-' + ${item.id}"
+        type="checkbox"
+        th:checked="${item.completed}"
+        th:hx-put="'/todoitem/' + ${item.id} + '/toggle'"
+        hx-target="#items"
+        hx-swap="outerHTML" />
+      <label
+        th:for="'complete-' + ${item.id}"></label>
+    </td>
+    <td th:text="${item.task}"></td>
+    <td>
+      <a
+        th:hx-delete="'/todoitem/' + ${item.id}"
+        hx-target="#items"
+        hx-swap="outerHTML">
+        Delete
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

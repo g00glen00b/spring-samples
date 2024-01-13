@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head (title)" th:with="titleWithDivider=${title} ? ${title} + ' - ' : ''">
+  <title th:text="${titleWithDivider} + 'Yet Another Todo App'">Yet Another Todo App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+  <meta name="csrf-token" th:content="${_csrf.token}" />
+  <meta name="csrf-header" th:content="${_csrf.headerName}" />
+</head>
+</html>

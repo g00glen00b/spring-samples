@@ -32,3 +32,4 @@ This is a collection of small applications demonstrating certain features of Spr
 | [Reactive relational databases with R2DBC and Spring](https://dimitri.codes/reactive-relational-databases-r2dbc-spring) | [spring-boot-r2dbc](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-r2dbc) |
 | [Reactive streams over the network with RSocket](https://dimitri.codes/reactive-streams-rsocket) | [spring-boot-rsocket](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-rsocket) |
 | [Battle of the Spring REST clients: RestTemplate, WebClient or RestClient?](https://dimitri.codes/resttemplate-or-webclient) | [spring-boot-restclient](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-restclient)
+| [Getting started with htmx and Spring Boot](https://dimitri.codes/spring-boot-htmx-intro) | [spring-boot-htmx](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-htmx)

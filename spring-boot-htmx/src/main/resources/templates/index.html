@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head (title='Home')}"></head>
+<body>
+<h1>
+  Hello,
+  <span th:text="${account.username}">username</span>
+  (<a hx-post="/logout">Log out</a>)
+</h1>
+<div class="card">
+  <div id="error"></div>
+  <table th:replace="~{fragments/items :: items (items=${items})}"></table>
+  <form th:replace="~{fragments/new-task :: new-task}"></form>
+</div>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
