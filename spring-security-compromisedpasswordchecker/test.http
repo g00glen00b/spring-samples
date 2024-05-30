@@ -1,0 +1,24 @@
+# Unauthenticated - 401
+GET http://localhost:8080/api/user/current
+Content-Type: application/json
+
+###
+
+# Wrong password - 401
+GET http://localhost:8080/api/user/current
+Content-Type: application/json
+Authorization: Basic user wrongpassword
+
+###
+
+# Compromised password - 401
+GET http://localhost:8080/api/user/current
+Content-Type: application/json
+Authorization: Basic user password
+
+###
+
+# Authenticated - 200
+GET http://localhost:8080/api/user/current
+Content-Type: application/json
+Authorization: Basic user2 A-Password-That-Is-Not-Common-Or-Shared
