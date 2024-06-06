@@ -34,3 +34,4 @@ This is a collection of small applications demonstrating certain features of Spr
 | [Battle of the Spring REST clients: RestTemplate, WebClient or RestClient?](https://dimitri.codes/resttemplate-or-webclient) | [spring-boot-restclient](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-restclient)
 | [Getting started with htmx and Spring Boot](https://dimitri.codes/spring-boot-htmx-intro) | [spring-boot-htmx](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-htmx)
 | [Exploring Spring Security's CompromisedPasswordChecker](https://dimitri.codes/spring-security-compromisedpasswordchecker) | [spring-security-compromisedpasswordchecker](https://github.com/g00glen00b/spring-samples/tree/master/spring-security-compromisedpasswordchecker)
+| [Using Mailpit with Spring Boot](https://dimitri.codes/spring-boot-mailpit) | [spring-boot-mailput](https://github.com/g00glen00b/spring-samples/tree/master/spring-boot-mailpit)
