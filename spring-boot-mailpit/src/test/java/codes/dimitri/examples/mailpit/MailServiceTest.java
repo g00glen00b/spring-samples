@@ -19,6 +19,7 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 @Testcontainers
@@ -35,7 +36,7 @@ class MailServiceTest {
     private MailpitClient mailpitClient;
 
     @Container
-    static GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.15")
+    static GenericContainer<?> mailpitContainer = new GenericContainer<>("axllent/mailpit:v1.18")
         .withExposedPorts(1025, 8025)
         .waitingFor(Wait.forLogMessage(".*accessible via.*", 1));
 
@@ -66,6 +67,14 @@ class MailServiceTest {
                 
                 Please do not respond to this email.""");
         });
+    }
+
+    @Test
+    void send_messageIsSupportedByAllClients() throws MessagingException {
+        service.send();
+        ObjectNode result = mailpitClient.findFirstMessage();
+        ObjectNode htmlCheckResult = mailpitClient.htmlCheck(result.get("ID").asText());
+        assertThat(htmlCheckResult.get("Total").get("Supported").asInt()).isEqualTo(100);
     }
 
     @TestConfiguration

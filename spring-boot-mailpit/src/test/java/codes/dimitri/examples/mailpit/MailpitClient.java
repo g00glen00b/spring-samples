@@ -39,6 +39,16 @@ public class MailpitClient {
             .body(ObjectNode.class);
     }
 
+    public ObjectNode htmlCheck(String messageId) {
+        return restClient
+            .get()
+            .uri(builder -> builder
+                .pathSegment("message", messageId, "html-check")
+                .build())
+            .retrieve()
+            .body(ObjectNode.class);
+    }
+
     public void deleteAllMessages() {
         restClient
             .delete()
