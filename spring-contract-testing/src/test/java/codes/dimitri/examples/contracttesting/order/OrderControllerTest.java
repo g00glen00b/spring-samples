@@ -10,9 +10,12 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -63,5 +66,20 @@ class OrderControllerTest {
 
         mockMvc.perform(get("/orders/99"))
             .andExpect(status().isNotFound());
+    }
+
+    @Test
+    void findAllPaged_returnsPagedOrders() throws Exception {
+        when(repository.findAll(any(Pageable.class))).thenReturn(
+            new PageImpl<>(List.of(new Order(1L, "customer-1", new BigDecimal("49.99"))))
+        );
+
+        mockMvc.perform(get("/orders/paged"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.content", hasSize(1)))
+            .andExpect(jsonPath("$.content[0].id").value(1))
+            .andExpect(jsonPath("$.content[0].customerId").value("customer-1"))
+            .andExpect(jsonPath("$.totalElements").value(1));
     }
 }
