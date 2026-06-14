@@ -2,6 +2,7 @@ package codes.dimitri.examples.contracttesting;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.OpenAPIV3Parser;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openapitools.openapidiff.core.OpenApiCompare;
 import org.openapitools.openapidiff.core.model.ChangedOpenApi;
@@ -34,19 +35,35 @@ class OpenApiSnapshotTest {
     @Autowired
     private OpenApiWebMvcResource openApiResource;
     @Value("classpath:snapshots/full-spec.json")
-    private Resource snapshotSpec;
+    private Resource fullSnapshotSpec;
+    @Value("classpath:snapshots/partial-spec.json")
+    private Resource partialSnapshotSpec;
+
+    private OpenAPI currentSpec;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        byte[] specBytes = openApiResource.openapiJson(new MockHttpServletRequest(), "/v3/api-docs", Locale.ENGLISH);
+        currentSpec = new OpenAPIV3Parser().readContents(new String(specBytes, StandardCharsets.UTF_8)).getOpenAPI();
+    }
 
     @Test
     void openApiSpec_matchesSnapshot() throws Exception {
-        byte[] specBytes = openApiResource.openapiJson(new MockHttpServletRequest(), "/v3/api-docs", Locale.ENGLISH);
-        OpenAPI currentSpec = new OpenAPIV3Parser().readContents(new String(specBytes, StandardCharsets.UTF_8)).getOpenAPI();
-
-        String snapshotSpecString = snapshotSpec.getContentAsString(StandardCharsets.UTF_8);
-        OpenAPI snapshotSpec = new OpenAPIV3Parser().readContents(snapshotSpecString).getOpenAPI();
+        OpenAPI snapshotSpec = new OpenAPIV3Parser().readContents(fullSnapshotSpec.getContentAsString(StandardCharsets.UTF_8)).getOpenAPI();
 
         ChangedOpenApi diff = OpenApiCompare.fromSpecifications(snapshotSpec, currentSpec);
         assertThat(diff.isUnchanged())
             .withFailMessage(() -> "OpenAPI spec has drifted from snapshot:\n" + new ConsoleRender().render(diff))
+            .isTrue();
+    }
+
+    @Test
+    void openApiSpec_isCompatibleWithPartialSnapshot() throws Exception {
+        OpenAPI partialSnapshot = new OpenAPIV3Parser().readContents(partialSnapshotSpec.getContentAsString(StandardCharsets.UTF_8)).getOpenAPI();
+
+        ChangedOpenApi diff = OpenApiCompare.fromSpecifications(partialSnapshot, currentSpec);
+        assertThat(diff.isCompatible())
+            .withFailMessage(() -> "OpenAPI spec broke compatibility with partial snapshot:\n" + new ConsoleRender().render(diff))
             .isTrue();
     }
 }
