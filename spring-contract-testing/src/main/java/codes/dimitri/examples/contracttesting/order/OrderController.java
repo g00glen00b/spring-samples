@@ -1,5 +1,7 @@
 package codes.dimitri.examples.contracttesting.order;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,11 @@ public class OrderController {
     @GetMapping
     public List<Order> findAll() {
         return repository.findAll();
+    }
+
+    @GetMapping("/paged")
+    public Page<Order> findAllPaged(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @GetMapping("/{id}")
