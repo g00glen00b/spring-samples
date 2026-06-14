@@ -19,6 +19,6 @@ public class OrderRepository {
     }
 
     public Optional<Order> findById(Long id) {
-        return ORDERS.stream().filter(o -> o.id().equals(id)).findFirst();
+        return ORDERS.stream().filter(o -> o.getId().equals(id)).findFirst();
     }
 }
