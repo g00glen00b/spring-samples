@@ -1,5 +1,6 @@
 package codes.dimitri.examples.contracttesting.order;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class OrderController {
     }
 
     @GetMapping("/paged")
-    public Page<Order> findAllPaged(Pageable pageable) {
+    public Page<Order> findAllPaged(@ParameterObject Pageable pageable) {
         return repository.findAll(pageable);
     }
 

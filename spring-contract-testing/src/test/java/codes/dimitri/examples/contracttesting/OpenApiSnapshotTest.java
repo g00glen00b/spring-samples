@@ -10,6 +10,7 @@ import org.openapitools.openapidiff.core.output.ConsoleRender;
 import codes.dimitri.examples.contracttesting.order.OrderController;
 import codes.dimitri.examples.contracttesting.order.OrderRepository;
 import org.springdoc.core.configuration.SpringDocConfiguration;
+import org.springdoc.core.configuration.SpringDocPageableConfiguration;
 import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springdoc.webmvc.api.OpenApiWebMvcResource;
 import org.springdoc.webmvc.core.configuration.SpringDocWebMvcConfiguration;
@@ -27,7 +28,12 @@ import java.util.Locale;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebMvcTest(controllers = OrderController.class)
-@ImportAutoConfiguration({SpringDocConfiguration.class, SpringDocConfigProperties.class, SpringDocWebMvcConfiguration.class})
+@ImportAutoConfiguration({
+    SpringDocConfiguration.class,
+    SpringDocConfigProperties.class,
+    SpringDocWebMvcConfiguration.class,
+    SpringDocPageableConfiguration.class
+})
 class OpenApiSnapshotTest {
 
     @MockitoBean
