@@ -1,0 +1,6 @@
+description: Returns 404 when order not found
+request:
+  method: GET
+  urlPath: /orders/999
+response:
+  status: 404

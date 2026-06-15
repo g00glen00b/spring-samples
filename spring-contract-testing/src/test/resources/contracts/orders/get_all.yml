@@ -1,0 +1,12 @@
+description: Returns all orders
+request:
+  method: GET
+  urlPath: /orders
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    - id: 1
+      customerId: customer-1
+      total: 49.99

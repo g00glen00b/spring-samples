@@ -1,0 +1,23 @@
+description: Returns paged orders
+request:
+  method: GET
+  urlPath: /orders/paged
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    content:
+      - id: 1
+        customerId: customer-1
+        total: 49.99
+    totalElements: 1
+    totalPages: 1
+  matchers:
+    body:
+      - path: $.content[0].id
+        type: by_type
+      - path: $.totalElements
+        type: by_type
+      - path: $.totalPages
+        type: by_type
