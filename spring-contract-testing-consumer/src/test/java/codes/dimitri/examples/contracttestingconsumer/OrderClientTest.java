@@ -1,7 +1,7 @@
-package codes.dimitri.examples.contracttesting;
+package codes.dimitri.examples.contracttestingconsumer;
 
-import codes.dimitri.examples.contracttesting.order.Order;
-import codes.dimitri.examples.contracttesting.order.OrderClient;
+import codes.dimitri.examples.contracttestingconsumer.order.Order;
+import codes.dimitri.examples.contracttestingconsumer.order.OrderClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ class OrderClientTest {
         List<Order> orders = client.findAll();
 
         assertThat(orders).hasSize(1);
-        assertThat(orders.get(0).getId()).isEqualTo(1L);
-        assertThat(orders.get(0).getCustomerId()).isEqualTo("customer-1");
+        assertThat(orders.get(0).id()).isEqualTo(1L);
+        assertThat(orders.get(0).customerId()).isEqualTo("customer-1");
     }
 
     @Test
@@ -48,8 +48,8 @@ class OrderClientTest {
         Optional<Order> order = client.findById(1L);
 
         assertThat(order).isPresent();
-        assertThat(order.get().getId()).isEqualTo(1L);
-        assertThat(order.get().getCustomerId()).isEqualTo("customer-1");
+        assertThat(order.get().id()).isEqualTo(1L);
+        assertThat(order.get().customerId()).isEqualTo("customer-1");
     }
 
     @Test

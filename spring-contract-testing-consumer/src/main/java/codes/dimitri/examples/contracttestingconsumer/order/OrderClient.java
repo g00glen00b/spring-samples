@@ -1,4 +1,4 @@
-package codes.dimitri.examples.contracttesting.order;
+package codes.dimitri.examples.contracttestingconsumer.order;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
