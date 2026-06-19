@@ -19,7 +19,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @PactConsumerTest
 class PactOrderClientTest {
 
-    @Pact(consumer = "spring-contract-testing-consumer", provider = "spring-contract-testing")
+    private static final String CONSUMER = "spring-contract-testing-consumer";
+    private static final String PROVIDER = "spring-contract-testing";
+
+    private OrderClient clientFor(MockServer mockServer) {
+        return new OrderClient(RestClient.builder().baseUrl(mockServer.getUrl()).build());
+    }
+
+    @Pact(consumer = CONSUMER, provider = PROVIDER)
     V4Pact findAll(PactBuilder builder) {
         return builder
             .expectsToReceiveHttpInteraction("a request for all orders", interaction -> interaction
@@ -46,14 +53,14 @@ class PactOrderClientTest {
     @Test
     @PactTestFor(pactMethod = "findAll")
     void findAll_returnsOrders(MockServer mockServer) {
-        var client = new OrderClient(RestClient.builder().baseUrl(mockServer.getUrl()).build());
+        var client = clientFor(mockServer);
         var orders = client.findAll();
-        assertThat(orders).isNotEmpty();
+        assertThat(orders).hasSize(1);
         assertThat(orders.getFirst().id()).isEqualTo(1L);
         assertThat(orders.getFirst().customerId()).isEqualTo("customer-1");
     }
 
-    @Pact(consumer = "spring-contract-testing-consumer", provider = "spring-contract-testing")
+    @Pact(consumer = CONSUMER, provider = PROVIDER)
     V4Pact findById_found(PactBuilder builder) {
         return builder
             .expectsToReceiveHttpInteraction("a request for order 1", interaction -> interaction
@@ -78,14 +85,15 @@ class PactOrderClientTest {
     @Test
     @PactTestFor(pactMethod = "findById_found")
     void findById_returnsOrder_whenFound(MockServer mockServer) {
-        var client = new OrderClient(RestClient.builder().baseUrl(mockServer.getUrl()).build());
+        var client = clientFor(mockServer);
         var order = client.findById(1L);
         assertThat(order).isPresent();
         assertThat(order.get().id()).isEqualTo(1L);
         assertThat(order.get().customerId()).isEqualTo("customer-1");
+        assertThat(order.get().total()).isEqualByComparingTo(new BigDecimal("49.99"));
     }
 
-    @Pact(consumer = "spring-contract-testing-consumer", provider = "spring-contract-testing")
+    @Pact(consumer = CONSUMER, provider = PROVIDER)
     V4Pact findById_notFound(PactBuilder builder) {
         return builder
             .expectsToReceiveHttpInteraction("a request for order 999", interaction -> interaction
@@ -104,7 +112,7 @@ class PactOrderClientTest {
     @Test
     @PactTestFor(pactMethod = "findById_notFound")
     void findById_returnsEmpty_whenNotFound(MockServer mockServer) {
-        var client = new OrderClient(RestClient.builder().baseUrl(mockServer.getUrl()).build());
+        var client = clientFor(mockServer);
         var order = client.findById(999L);
         assertThat(order).isEmpty();
     }
