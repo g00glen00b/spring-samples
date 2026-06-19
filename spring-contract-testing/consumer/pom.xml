@@ -61,8 +61,6 @@
                 <version>4.7.0</version>
                 <configuration>
                     <pactBrokerUrl>http://localhost:9292</pactBrokerUrl>
-                    <pactBrokerUsername>pact</pactBrokerUsername>
-                    <pactBrokerPassword>pact</pactBrokerPassword>
                 </configuration>
             </plugin>
         </plugins>

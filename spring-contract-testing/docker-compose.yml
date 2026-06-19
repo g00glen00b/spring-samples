@@ -20,6 +20,3 @@ services:
         condition: service_healthy
     environment:
       PACT_BROKER_DATABASE_URL: postgres://pact:pact@postgres/pact
-      PACT_BROKER_BASIC_AUTH_USERNAME: pact
-      PACT_BROKER_BASIC_AUTH_PASSWORD: pact
-      PACT_BROKER_ALLOW_PUBLIC_READ: "true"
