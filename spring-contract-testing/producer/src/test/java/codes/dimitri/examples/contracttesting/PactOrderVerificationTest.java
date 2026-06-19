@@ -3,7 +3,7 @@ package codes.dimitri.examples.contracttesting;
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.State;
-import au.com.dius.pact.provider.junitsupport.loader.PactFolder;
+import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import au.com.dius.pact.provider.spring.spring7.PactVerificationSpring7Provider;
 import au.com.dius.pact.provider.spring.spring7.Spring7MockMvcTestTarget;
 import codes.dimitri.examples.contracttesting.order.Order;
@@ -24,7 +24,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.when;
 
 @Provider("spring-contract-testing")
-@PactFolder("src/test/resources/pacts")
+@PactBroker(url = "${pact.broker.url:http://localhost:9292}")
 @WebMvcTest(OrderController.class)
 class PactOrderVerificationTest {
 
