@@ -4,6 +4,7 @@ import codes.dimitri.examples.contracttesting.order.Order;
 import codes.dimitri.examples.contracttesting.order.OrderController;
 import codes.dimitri.examples.contracttesting.order.OrderRepository;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -14,7 +15,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -36,7 +36,6 @@ public abstract class ContractVerifierBase {
 
         when(repository.findAll()).thenReturn(List.of(order));
         when(repository.findById(1L)).thenReturn(Optional.of(order));
-        when(repository.findById(999L)).thenReturn(Optional.empty());
         when(repository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(order)));
     }
 }

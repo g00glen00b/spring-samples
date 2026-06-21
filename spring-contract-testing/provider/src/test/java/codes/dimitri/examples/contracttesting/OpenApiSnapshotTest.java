@@ -1,5 +1,6 @@
 package codes.dimitri.examples.contracttesting;
 
+import com.fasterxml.jackson.databind.ObjectWriter;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,24 +22,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.core.io.WritableResource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
-import org.springframework.core.io.Resource;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WebMvcTest(controllers = OrderController.class)
+@WebMvcTest(controllers = {
+    OrderController.class
+})
 @ImportAutoConfiguration({
     SpringDocConfiguration.class,
     SpringDocConfigProperties.class,
     SpringDocWebMvcConfiguration.class,
-    SpringDocPageableConfiguration.class
+    SpringDocPageableConfiguration.class,
+    OpenApiConfiguration.class
 })
 class OpenApiSnapshotTest {
 
@@ -46,38 +48,46 @@ class OpenApiSnapshotTest {
     private OrderRepository repository;
     @Autowired
     private OpenApiWebMvcResource openApiResource;
-    @Value("classpath:snapshots/full-spec.json")
-    private Resource fullSnapshotSpec;
-    @Value("classpath:snapshots/partial-spec.json")
-    private Resource partialSnapshotSpec;
-
+    @Value("file:src/test/snapshots/full-spec.json")
+    private WritableResource fullSnapshotSpec;
+    @Value("file:src/test/snapshots/partial-spec.json")
+    private WritableResource partialSnapshotSpec;
+    private ObjectMapper objectMapper;
+    private ObjectWriter objectWriter;
+    private OpenAPIV3Parser parser;
+    private ConsoleRender consoleRender;
     private OpenAPI currentSpec;
 
     @BeforeEach
     void setUp() throws Exception {
+        parser = new OpenAPIV3Parser();
+        objectMapper = new ObjectMapper();
+        objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
+        consoleRender = new ConsoleRender();
         var specBytes = openApiResource.openapiJson(new MockHttpServletRequest(), "/v3/api-docs", Locale.ENGLISH);
-        currentSpec = new OpenAPIV3Parser().readContents(new String(specBytes, StandardCharsets.UTF_8)).getOpenAPI();
+        currentSpec = parser.readContents(new String(specBytes, StandardCharsets.UTF_8)).getOpenAPI();
     }
 
-    private static String renderDiff(ChangedOpenApi diff) {
+    private String renderDiff(ChangedOpenApi diff) {
         var out = new ByteArrayOutputStream();
-        new ConsoleRender().render(diff, new OutputStreamWriter(out, StandardCharsets.UTF_8));
+        consoleRender.render(diff, new OutputStreamWriter(out, StandardCharsets.UTF_8));
         return out.toString(StandardCharsets.UTF_8);
     }
 
     @Test
     void regenerateFullSnapshot() throws Exception {
         var specBytes = openApiResource.openapiJson(new MockHttpServletRequest(), "/v3/api-docs", Locale.ENGLISH);
-        var mapper = new ObjectMapper();
-        var prettySpec = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(specBytes));
-        Files.writeString(Path.of("src/test/resources/snapshots/full-spec.json"), prettySpec);
+        var prettySpec = objectWriter.writeValueAsString(objectMapper.readTree(specBytes));
+        try (var out = fullSnapshotSpec.getOutputStream()) {
+            out.write(prettySpec.getBytes(StandardCharsets.UTF_8));
+        }
     }
 
     @Test
     void openApiSpec_matchesSnapshot() throws Exception {
-        var snapshotSpec = new OpenAPIV3Parser().readContents(fullSnapshotSpec.getContentAsString(StandardCharsets.UTF_8)).getOpenAPI();
+        var snapshotSpec = parser.readContents(fullSnapshotSpec.getContentAsString(StandardCharsets.UTF_8)).getOpenAPI();
+        var diff = OpenApiCompare.fromSpecifications(snapshotSpec, currentSpec);
 
-        ChangedOpenApi diff = OpenApiCompare.fromSpecifications(snapshotSpec, currentSpec);
         assertThat(diff.isUnchanged())
             .withFailMessage(() -> "OpenAPI spec has drifted from snapshot:\n" + renderDiff(diff))
             .isTrue();
@@ -86,8 +96,8 @@ class OpenApiSnapshotTest {
     @Test
     void openApiSpec_isCompatibleWithPartialSnapshot() throws Exception {
         var partialSnapshot = new OpenAPIV3Parser().readContents(partialSnapshotSpec.getContentAsString(StandardCharsets.UTF_8)).getOpenAPI();
+        var diff = OpenApiCompare.fromSpecifications(partialSnapshot, currentSpec);
 
-        ChangedOpenApi diff = OpenApiCompare.fromSpecifications(partialSnapshot, currentSpec);
         assertThat(diff.isCompatible())
             .withFailMessage(() -> "OpenAPI spec broke compatibility with partial snapshot:\n" + renderDiff(diff))
             .isTrue();

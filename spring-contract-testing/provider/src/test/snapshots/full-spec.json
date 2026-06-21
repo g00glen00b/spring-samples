@@ -1,8 +1,9 @@
 {
   "openapi" : "3.1.0",
   "info" : {
-    "title" : "OpenAPI definition",
-    "version" : "v0"
+    "title" : "Orders API",
+    "description" : "Contract testing examples — Orders API",
+    "version" : "0.0.1-SNAPSHOT"
   },
   "servers" : [ {
     "url" : "http",
